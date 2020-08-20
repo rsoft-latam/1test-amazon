@@ -1,4 +1,34 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<div>
+
+  <p *ngIf="getTotalStock() === 0">
+    VENDISTE TODO
+  </p>
+
+  <p>AMAZON: Stock Total {{getTotalStock()}}</p>
+
+	<p>CALOR</p>
+
+	<div style="display: flex; flexDirection: row;">
+		<div *ngFor="let product of products.calor">
+			<product
+       [nombre]="product.nombre"
+       [talla]="product.talla"
+       [stock]="product.stock"
+       (comprar)="comprar(product, 'calor')">
+			</product>
+		</div>
+	</div>
+
+	<p>FRIO</p>
+	<div style="display: flex; flexDirection: row;">
+		<div *ngFor="let product of products.frio">
+			<product 
+      [nombre]="product.nombre" 
+      [talla]="product.talla"
+      [stock]="product.stock"
+      (comprar)="comprar(product, 'frio')">
+			</product>
+		</div>
+	</div>
+
+</div>

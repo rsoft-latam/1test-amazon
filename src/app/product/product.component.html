@@ -1,0 +1,10 @@
+<div [style.background]="stock === 0 ? 'red' : 'orange'"
+     style="float: left; margin: 10px; padding: 10px;">
+	<p>Nombre: {{nombre | uppercase}}</p>
+	<p>Talla: {{getTalla(talla)}}</p>
+	<p>Stock: {{stock}}</p>
+
+	<button (click)="onComprar()" [disabled]="stock === 0">
+    Comprar
+  </button>
+</div>
