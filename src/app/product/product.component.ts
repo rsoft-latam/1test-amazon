@@ -1,20 +1,28 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
   selector: "product",
-  templateUrl: "./product.component.html",
-  styleUrls: ["./product.component.css"]
+  template: `
+  <div [style.background]="stock === 0 ? 'red' : 'orange'"
+       style="float: left; margin: 10px; padding: 10px;">
+
+	  <p>Nombre: {{nombre | uppercase}}</p>
+	  <p>Talla: {{getTalla(talla)}}</p>
+	  <p>Stock: {{stock}}</p>
+
+	  <button (click)="onComprar()" [disabled]="stock === 0">
+      Comprar
+    </button>
+  </div>
+  `
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent {
   @Input() nombre: string;
   @Input() talla: number;
   @Input() stock: number;
-
   @Output() comprar = new EventEmitter();
 
   constructor() {}
-
-  ngOnInit() {}
 
   onComprar() {
     this.comprar.emit();
